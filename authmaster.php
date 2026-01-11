@@ -20,7 +20,7 @@ session_start();
 require_once 'RailsClient.php';
 $rails = new RailsClient();
 
-$auth = $rails->auth('Silent58', '29Hjsv04Hvb'); // your account credentials
+$auth = $rails->auth('user', 'password'); // your account credentials
 if (!$auth || $auth['message'] !== 'auth_success') {
 	header('Content-Type: application/json; charset=utf-8');
     http_response_code(500);
