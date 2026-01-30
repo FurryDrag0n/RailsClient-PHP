@@ -67,6 +67,24 @@ class RailsClient {
 
         return $this->makeRequest('/invoice.php', $data);
     }
+
+	public function makePayout($username, $password, $amount, $recipient, $type = 'user') {
+        if (!$this->isLoggedIn)
+            return [
+                'message' => 'not_authenticated',
+                'errors' => ['You must be logged in to create an invoice']
+            ];
+
+        $data = [
+			'username' => $username,
+			'password' => $password,
+            'amount' => $amount,
+			'recipient' => $recipient,
+			'type' => $type
+        ];
+
+        return $this->makeRequest('/payout.php', $data);
+    }
 	
 	public function userInfo($token = null) {
         if (!$this->isLoggedIn)
@@ -248,4 +266,5 @@ class RailsClient {
     public function isAuthenticated() {
         return $this->isLoggedIn;
     }
+
 }
